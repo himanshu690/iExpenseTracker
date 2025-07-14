@@ -65,7 +65,8 @@ const usersController = {
     
   //profile
   profile: asyncHandler(async (req, res)=>{
-    const user = await User.findById("6875036527bf6eab4217da68");
+    
+    const user = await User.findById("req.user");
     if(!user){
       throw new error("User not found");
     }
