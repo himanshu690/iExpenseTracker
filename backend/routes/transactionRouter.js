@@ -8,6 +8,8 @@ const transactionRouter = express.Router();
 transactionRouter.post("/api/v1/transaction/create",isAuthenticated ,transactionController.create);
 // list
 transactionRouter.get("/api/v1/transaction/lists",isAuthenticated, transactionController.getFilteredTransaction);
-//Profile
+// update
+transactionRouter.put("/api/v1/transaction/update/:id",isAuthenticated, transactionController.update);
+transactionRouter.put("/api/v1/transaction/delete/:id",isAuthenticated, transactionController.delete);
 
 module.exports = transactionRouter;
