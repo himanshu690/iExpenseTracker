@@ -5,7 +5,7 @@ const transactionSchema = new mongoose.Schema({
         ref: "User",
         required: true,
     },
-    types: {
+    type: {
         type: String,
         required: true,
         enum: ["income", "expense"],

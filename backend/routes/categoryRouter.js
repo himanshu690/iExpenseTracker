@@ -6,7 +6,7 @@ const categoryRouter = express.Router();
 //add
 categoryRouter.post("/api/v1/categories/create",isAuthenticated ,categoryController.create);
 // list
-categoryRouter.get("/api/v1/categories/lists", categoryController.lists);
+categoryRouter.get("/api/v1/categories/lists",isAuthenticated, categoryController.lists);
 //Profile
 
 module.exports = categoryRouter;
