@@ -1,10 +1,9 @@
 const jwt = require("jsonwebtoken");
 
-const isAuthenticated = async(req, resizeBy, next)=>{
+const isAuthenticated = async(req, res, next)=>{
     const headerObj = req.headers;
-    const token = headerObj?.authorization?.split(' ')[1]
-    const verifyToken = jwt.verify(token, "masynctechkey",(err, decoded)=>{
-        console.log(decoded);
+    const token = headerObj?.authorization?.split(" ")[1]
+    const verifyToken = jwt.verify(token, "masynctechKey", (err, decoded)=>{
         if(err){
             return false;
         }else{

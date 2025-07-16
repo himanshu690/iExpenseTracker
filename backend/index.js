@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const userRouter = require("./routes/userRouter");
 const errorHandler = require("./middlewares/errorHandlerMiddleware");
+const categoryRouter = require("./routes/categoryRouter");
 const app = express();
 
 //!Connect to mongodb
@@ -11,11 +12,11 @@ mongoose
   .then(() => console.log("DB Connected"))
   .catch((e) => console.log(e));
 
-
 //!Middlewares
 app.use(express.json()); //?Pass incoming json data
 //!Routes
 app.use("/", userRouter);
+app.use("/", categoryRouter);
 // Error
 app.use(errorHandler);
 

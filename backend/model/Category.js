@@ -6,7 +6,7 @@ const categorySchema = new mongoose.Schema({
         required: true,
     
     },
-    email: {
+    name: {
         type: String,
         required: true,
         default: "Uncategorized",
