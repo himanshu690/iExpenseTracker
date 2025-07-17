@@ -5,14 +5,17 @@ import HomePage from './components/HomePage'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import PrivateNavbar from './components/PrivateNavbar'
+import getUserFromStorage from './utils/getUserFromStorage'
 
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const token = getUserFromStorage();
+  console.log(token);
   return (
     <BrowserRouter>
-      <PublicNavbar/>
+      {token?<PrivateNavbar/>:<PublicNavbar/>}
       <Routes>
         <Route path='/' element={<HomePage/>}/>
         <Route path='/login' element={<Login/>}/>
