@@ -1,11 +1,12 @@
 import { useMutation } from '@tanstack/react-query'
 import { useFormik } from 'formik'
 import { useDispatch } from 'react-redux'
-import React from 'react'
+import React, { useEffect } from 'react'
 import * as Yup from "yup"
 import { loginAPI } from '../services/users/userServices'
 import AlertMessage from './AlertMessage'
 import { loginAction } from '../redux/slice/authSlice'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -15,6 +16,10 @@ const validationSchema = Yup.object({
 })
 
 const Login = () => {
+  //navigate
+  const navigate = useNavigate()
+
+
   const dispatch = useDispatch()
   //Mutation
   const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
@@ -43,7 +48,15 @@ const Login = () => {
     }
     
   });
-  console.log({isPending, isError, error, isSuccess});
+  //redirect
+  useEffect(()=>{
+    setTimeout(()=>{
+      if(isSuccess){
+        navigate('/profile')
+      }
+    },3000)
+  }, [isPending, isError, error, isSuccess])
+
   return (
     <div className="d-flex justify-content-center align-items-center vh-100" style={{
       background: "linear-gradient(to right, #f5f7fa, #c3cfe2)"
