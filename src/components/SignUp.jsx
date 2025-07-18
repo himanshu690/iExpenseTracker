@@ -7,6 +7,8 @@ import { useMutation } from '@tanstack/react-query'
 import { useDispatch } from 'react-redux'
 import { loginAction } from '../redux/slice/authSlice'
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+
 
 
 // Validation Schema
@@ -36,11 +38,11 @@ export default function SignUp() {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log(values)
+      
       // http
       mutateAsync(values)
         .then((data) => {
-          console.log(data);
+          
           //dispatch
           dispatch(loginAction(data));
           //Save the user into localStorage
@@ -54,9 +56,9 @@ export default function SignUp() {
     useEffect(()=>{
       setTimeout(()=>{
         if(isSuccess){
-          navigate('/profile')
+          navigate('/dashboard')
         }
-      },3000)
+      },1000)
     }, [isPending, isError, error, isSuccess])
 
   return (

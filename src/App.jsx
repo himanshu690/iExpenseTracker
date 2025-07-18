@@ -9,6 +9,9 @@ import PrivateNavbar from './components/PrivateNavbar'
 import getUserFromStorage from './utils/getUserFromStorage'
 import { useSelector } from 'react-redux'
 import AddCategory from './components/AddCategory'
+import CategoriesList from './components/CategoriesList'
+import TransactionForm from './components/AddTransactions'
+import Dashboard from './components/Dashboard'
 
 
 function App() {
@@ -23,6 +26,9 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<SignUp/>}/>
         <Route path='/addCategories' element={<AddCategory/>}/>
+        <Route path='/categories' element={<CategoriesList/>}/>
+        <Route path='/add-transaction' element={<TransactionForm/>}/>
+        <Route path='/dashboard' element={<Dashboard/>}/>
       </Routes>
       </div>
         
