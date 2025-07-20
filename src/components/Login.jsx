@@ -16,12 +16,12 @@ const validationSchema = Yup.object({
 })
 
 const Login = () => {
-  //navigate
+
   const navigate = useNavigate()
 
 
   const dispatch = useDispatch()
-  //Mutation
+
   const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
     mutationFn: loginAPI,
     mutationKey: ['login']
@@ -36,19 +36,19 @@ const Login = () => {
     validationSchema,
     onSubmit: (values) => {
       
-      //http request
+  
       mutateAsync(values)
         .then((data) => {
-          //dispatch
+    
           dispatch(loginAction(data));
-          //Save the user into localStorage
+    
           localStorage.setItem("userInfo", JSON.stringify(data));
         })
         .catch((e) => console.log(e));
     }
     
   });
-  //redirect
+  
   useEffect(()=>{
     setTimeout(()=>{
       if(isSuccess){
@@ -63,7 +63,7 @@ const Login = () => {
     }}>
       <div className="card shadow p-4" style={{ width: "100%", maxWidth: "400px", borderRadius: "1rem" }}>
         <h2 className="text-center mb-4" style={{ color: "#333" }}>Login</h2>
-        {/* alerts */}
+      
         {isPending && <AlertMessage type= 'loading' message='Login you in....'/>}
         {isError && <AlertMessage type= 'error' message={error.response.data.message}/>}
         {isSuccess && <AlertMessage type= 'success' message='Login successfully'/>}

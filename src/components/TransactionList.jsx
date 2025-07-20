@@ -7,14 +7,14 @@ import { listCategoriesAPI } from "../services/category/categoryServices";
 
 
 const TransactionList = () => {
-  //!Filtering state
+ 
   const [filters, setFilters] = useState({
     startDate: "",
     endDate: "",
     type: "",
     category: "",
   });
-  //!Handle Filter Change
+
   const handleFilterChange = (e) => {
     
     
@@ -25,7 +25,7 @@ const TransactionList = () => {
  
   
 
-  //fetching
+ 
   const {
     data: categoriesData,
     isLoading: categoryLoading,
@@ -34,7 +34,7 @@ const TransactionList = () => {
     queryFn: listCategoriesAPI,
     queryKey: ["list-categories"],
   });
-  //fetching
+ 
   const {
     data: transactions,
     isError,
@@ -50,7 +50,7 @@ const TransactionList = () => {
   return (
     <div className="my-4 p-4 shadow-lg rounded-lg bg-white">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-        {/* Start Date */}
+       
         <input
           type="date"
           name="startDate"
@@ -58,7 +58,7 @@ const TransactionList = () => {
           onChange={handleFilterChange}
           className="p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
         />
-        {/* End Date */}
+    
         <input
           value={filters.endDate}
           onChange={handleFilterChange}
@@ -66,7 +66,7 @@ const TransactionList = () => {
           name="endDate"
           className="p-2 rounded-lg border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
         />
-        {/* Type */}
+
         <div className="relative">
           <select
             name="type"
@@ -80,7 +80,7 @@ const TransactionList = () => {
           </select>
           <ChevronDownIcon className="w-5 h-5 absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
         </div>
-        {/* Category */}
+     
         <div className="relative">
           <select
             value={filters.category}
@@ -102,7 +102,7 @@ const TransactionList = () => {
         </div>
       </div>
       <div className="my-4 p-4 shadow-lg rounded-lg bg-white">
-        {/* Inputs and selects for filtering (unchanged) */}
+       
         <div className="mt-6 bg-gray-50 p-4 rounded-lg shadow-inner">
           <h3 className="text-xl font-semibold mb-4 text-gray-800">
             Filtered Transactions
@@ -135,20 +135,7 @@ const TransactionList = () => {
                     {transaction.description}
                   </span>
                 </div>
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => handleUpdateTransaction(transaction._id)}
-                    className="text-blue-500 hover:text-blue-700"
-                  >
-                    {/* <FaEdit /> */}
-                  </button>
-                  <button
-                    onClick={() => handleDelete(transaction._id)}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    {/* <FaTrash /> */}
-                  </button>
-                </div>
+                
               </li>
             ))}
           </ul>

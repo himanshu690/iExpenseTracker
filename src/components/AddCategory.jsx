@@ -10,7 +10,7 @@ import AlertMessage from './AlertMessage';
 export default function AddCategory() {
   const navigate = useNavigate()
 
-  //Mutation
+  
   const {mutateAsync, isPending, isError, error, isSuccess} = useMutation({
     mutationFn: addCategoryAPI,
     mutationKey: ['login']
@@ -30,10 +30,10 @@ export default function AddCategory() {
     },
     validationSchema,
     onSubmit: (values) => {
-      // Add API call or dispatch action here
+      
       mutateAsync(values)
         .then((data) => {
-          //dispatch
+         
           
         })
         .catch((e) => console.log(e));
@@ -52,7 +52,7 @@ export default function AddCategory() {
             <label htmlFor="type" className="form-label">
               Category: Expense or Income
             </label>
-            {/* error messages */}
+          
         {isPending && <AlertMessage type= 'loading' message='wait....'/>}
         {isError && <AlertMessage type= 'error' message={error.response.data.message}/>}
         {isSuccess && <AlertMessage type= 'success' message='Category added'/>}

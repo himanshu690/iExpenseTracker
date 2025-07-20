@@ -30,7 +30,7 @@ export default function Overview() {
     queryKey: ["list-transactions"],
   });
 
-  //! calculate total income and expense
+ 
   const totals = transactions?.reduce(
     (acc, transaction) => {
       if (transaction?.type === "income") {

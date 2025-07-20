@@ -4,7 +4,7 @@ const Transaction = require("../model/Transaction");
 
 
 const categoryController = {
-  //!add
+  
   create: asyncHandler(async (req, res) => {
     const { name, type } = req.body;
     if(!name || !type){
@@ -16,7 +16,7 @@ const categoryController = {
       throw new Error("Invalid category type"+ type);
     }
 
-    //check category exists
+  
     const categoryExists = await Category.findOne({
       name: normalizedName,
       user: req.user,
@@ -27,7 +27,7 @@ const categoryController = {
       );
     }
 
-    //create category
+  
     const category = await Category.create({
       name: normalizedName,
       user: req.user,
@@ -36,13 +36,13 @@ const categoryController = {
     res.status(201).json(category);
 
   }),
-  //!Lists
+
   lists: asyncHandler(async (req, res) => {
     const categories = await Category.find({user: req.user});
     res.status(200).json(categories);
   }),
 
-  //!update
+ 
   update: asyncHandler(async (req, res) => {
     const { categoryId } = req.params;
     const { type, name } = req.body;
@@ -68,7 +68,7 @@ const categoryController = {
     }
     res.json(updatedCategory);
   }),
-  //! delete
+
   delete: asyncHandler(async (req, res) => {
     const category = await Category.findById(req.params.id);
     if (category && category.user.toString() === req.user.toString()) {
@@ -78,7 +78,7 @@ const categoryController = {
         { user: req.user, category: category.name },
         { $set: { category: defaultCategory } }
       );
-      //! Remove category
+
       await Category.findByIdAndDelete(req.params.id);
       res.json({ message: "Category removed and transactions updated" });
     } else {

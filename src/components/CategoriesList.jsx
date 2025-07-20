@@ -7,17 +7,16 @@ import {listCategoriesAPI, deleteCategoryAPI } from "../services/category/catego
 import AlertMessage from "./AlertMessage";
 
 const CategoriesList = () => {
-  //fetching
+
   const { data, isError, isLoading, isFetched, error, refetch } = useQuery({
     queryFn: listCategoriesAPI,
     queryKey: ["list-categories"],
   });
 
-  //Deleting
-  //Navigate
+ 
   const navigate = useNavigate();
 
-  // Mutation
+ 
   const {
     mutateAsync,
     isPending,
@@ -27,11 +26,11 @@ const CategoriesList = () => {
     mutationFn: deleteCategoryAPI,
     mutationKey: ["delete-category"],
   });
-  //Delete handler
+
   const handleDelete = (id) => {
     mutateAsync(id)
       .then((data) => {
-        //refetch
+       
         refetch();
       })
       .catch((e) => console.log(e));
@@ -39,7 +38,7 @@ const CategoriesList = () => {
   return (
     <div className="max-w-md mx-auto my-10 bg-white p-6 rounded-lg shadow-lg">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Categories</h2>
-      {/* Display message */}
+     
       {isLoading && <AlertMessage type="loading" message="Loading" />}
       {isError && (
         <AlertMessage type="error" message={error.response.data.message} />

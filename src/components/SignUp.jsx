@@ -11,7 +11,6 @@ import { useEffect, useState } from "react";
 
 
 
-// Validation Schema
 const validationSchema = Yup.object({
   username: Yup.string().required('Username is required'),
   email: Yup.string().email('Invalid email address').required('Email is required'),
@@ -39,20 +38,20 @@ export default function SignUp() {
     validationSchema,
     onSubmit: (values) => {
       
-      // http
+   
       mutateAsync(values)
         .then((data) => {
           
-          //dispatch
+   
           dispatch(loginAction(data));
-          //Save the user into localStorage
+       
           localStorage.setItem("userInfo", JSON.stringify(data));
         })
         .catch((e) => console.log(e));
     }
   })
 
-  //redirect
+
     useEffect(()=>{
       setTimeout(()=>{
         if(isSuccess){
@@ -68,7 +67,7 @@ export default function SignUp() {
       <div className="card shadow p-4" style={{ width: "100%", maxWidth: "400px", borderRadius: "1rem" }}>
         <h2 className="text-center mb-4" style={{ color: "#333" }}>Sign Up</h2>
 
-        {/* error messages */}
+     
         {isPending && <AlertMessage type= 'loading' message='Login you in....'/>}
         {isError && <AlertMessage type= 'error' message={error.response.data.message}/>}
         {isSuccess && <AlertMessage type= 'success' message='Register successfully'/>}

@@ -3,7 +3,7 @@ import { BASE_URL } from "../../utils/url";
 import getUserFromStorage from "../../utils/getUserFromStorage";
 const token = getUserFromStorage();
 
-// add
+
 export const addTransactionAPI = async ({
     type,
     category,
@@ -27,7 +27,7 @@ export const addTransactionAPI = async ({
 };
 
 
-// lists
+
 export const listTransactionsAPI = async ({category, endDate, startDate, type}) => {
   const response = await axios.get(`${BASE_URL}/transaction/lists`, {
     params:{category, endDate, startDate, type},
@@ -35,7 +35,7 @@ export const listTransactionsAPI = async ({category, endDate, startDate, type}) 
       Authorization: `Bearer ${token}`,
     },
   });
-  //Return a promise
+ 
   return response.data;
 };
 
@@ -57,16 +57,16 @@ export const updateCategoryAPI = async ({ name, type, id }) => {
       },
     }
   );
-  //Return a promise
+
   return response.data;
 };
-//! delete
+
 export const deleteCategoryAPI = async (id) => {
   const response = await axios.delete(`${BASE_URL}/categories/delete/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
-  //Return a promise
+
   return response.data;
 };

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function HomePage() {
   return (
@@ -35,9 +36,9 @@ export default function HomePage() {
         </div>
       </div>
 
-      <button className="btn btn-light text-success fw-semibold px-4 py-2 rounded-pill shadow">
+      <Link className="btn btn-light text-success fw-semibold px-4 py-2 rounded-pill shadow" to="/login">
         Get Started
-      </button>
+      </Link>
     </div>
     </div>
   )

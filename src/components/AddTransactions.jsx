@@ -9,13 +9,13 @@ import AlertMessage from './AlertMessage';
 export default function TransactionForm() {
     const navigate = useNavigate()
 
-  //Mutation
+  
   const {mutateAsync, isPending, isSuccess, isError: isAddTranErr} = useMutation({
     mutationFn: addTransactionAPI,
     mutationKey: ['add-transaction']
   })
 
-  //fetching
+ 
   const { data, isError, isLoading, isFetched, error, refetch } = useQuery({
     queryFn: listCategoriesAPI,
     queryKey: ["list-categories"],
@@ -39,7 +39,7 @@ export default function TransactionForm() {
     onSubmit: (values) => {
       mutateAsync(values)
         .then((data) => {
-          //dispatch
+         
           
         })
         .catch((e) => console.log(e));
@@ -52,9 +52,9 @@ export default function TransactionForm() {
       <p className="text-muted">Fill in the details below.</p>
 
       <form onSubmit={formik.handleSubmit}>
-        {/* Type */}
+   
         <div className="mb-3">
-            {/* error messages */}
+           
         {isPending && <AlertMessage type= 'loading' message='wait....'/>}
         {isError && <AlertMessage type= 'error' message={error.response.data.message}/>}
         {isSuccess && <AlertMessage type= 'success' message='Transaction added successfully...'/>}
@@ -76,7 +76,7 @@ export default function TransactionForm() {
           )}
         </div>
 
-        {/* Amount */}
+   
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">Amount</label>
           <input
@@ -94,7 +94,7 @@ export default function TransactionForm() {
           )}
         </div>
 
-        {/* Category */}
+       
         <div className="mb-3">
           <label htmlFor="category" className="form-label">Category</label>
           <select
@@ -119,7 +119,7 @@ export default function TransactionForm() {
           )}
         </div>
 
-        {/* Date */}
+      
         <div className="mb-3">
           <label htmlFor="date" className="form-label">Date</label>
           <input
@@ -136,7 +136,7 @@ export default function TransactionForm() {
           )}
         </div>
 
-        {/* Description */}
+     
         <div className="mb-3">
           <label htmlFor="description" className="form-label">Description (Optional)</label>
           <textarea
