@@ -6,12 +6,13 @@ const Transaction = require("../model/Transaction");
 
 
 const transactionController = {
+  //!add
   create: asyncHandler(async (req, res) => {
     const { type, category, amount, date,description } = req.body;
     if(!category || !type || !amount || !date || !description){
       throw new Error('Name, type, date, amount and description are required')
     }
-
+    // create 
     const transaction = await Transaction.create({
       user: req.user,
       type,
@@ -24,7 +25,7 @@ const transactionController = {
     
 
   }),
-
+  //!Lists
   getFilteredTransaction: asyncHandler(async (req, res) => {
     const {startDate, endDate, type, category} = req.query
     let filters = {user: req.user};
@@ -51,7 +52,7 @@ const transactionController = {
     res.json(transactions);
   }),
 
- 
+  //!update
   update: asyncHandler(async (req, res) => {
     const transaction = await Transaction.findById(req.params.id);
     if (transaction && transaction.user.toString() === req.user.toString()) {
@@ -66,7 +67,7 @@ const transactionController = {
       res.json(updatedTransaction);
     }
   }),
-
+  //! delete
   delete: asyncHandler(async (req, res) => {
     const transaction = await Transaction.findById(req.params.id);
     if (transaction && transaction.user.toString() === req.user.toString()) {
@@ -77,4 +78,4 @@ const transactionController = {
   
 };
 
-module.exports = transactionController;
+module.exports = transactionController;  

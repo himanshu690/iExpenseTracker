@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors")
@@ -7,15 +8,19 @@ const categoryRouter = require("./routes/categoryRouter");
 const transactionRouter = require("./routes/transactionRouter");
 const app = express();
 
+const dbURL = process.env.MONGO_URL;
 
 mongoose
-  .connect("mongodb://localhost:27017/Mern-expense")
-  .then(() => console.log("DB Connected"))
-  .catch((e) => console.log(e));
+  .connect(dbURL)
+  .then(() => console.log("MongoDB Atlas Connected"))
+  .catch((e) => console.log("Connection Error: ", e));
 
-const corsOptions ={
-  origin: ['http://localhost:5173']
-}
+const corsOptions = {
+  origin: [
+    "http://localhost:5173",
+    "https://i-expense-tracker.vercel.app/"
+  ]
+};
 app.use(cors(corsOptions));
 
 app.use(express.json()); 
@@ -29,5 +34,5 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () =>
-  console.log(`http://localhost:${PORT} `)
+  console.log(`Server running on http://localhost:${PORT}`)
 );
