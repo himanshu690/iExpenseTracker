@@ -18,7 +18,7 @@ mongoose
 const corsOptions = {
   origin: [
     "http://localhost:5173",
-    "https://i-expense-tracker.vercel.app/"
+    "https://i-expense-tracker.vercel.app"
   ]
 };
 app.use(cors(corsOptions));
